@@ -1,120 +1,120 @@
-# Shipping Charge Estimator
+# 🚚 Jumbotail Shipping Charge Estimator
 
-A production-grade B2B e-commerce shipping charge estimation API built with Spring Boot 3.2.x. Designed for Kirana stores to calculate shipping costs based on distance, transport mode, and delivery speed.
+Production-grade B2B shipping charge API built with **Spring Boot 3.2**. Calculates shipping costs based on distance, transport mode, and delivery speed for Kirana stores.
 
-## 🚀 Features
+[![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://openjdk.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-green.svg)](https://spring.io/projects/spring-boot)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 
-- **Nearest Warehouse Lookup** - Find closest warehouse to seller location using Haversine formula
-- **Shipping Charge Calculation** - Calculate costs based on distance, weight, and delivery speed
-- **Transport Mode Selection** - Automatic selection (Aeroplane/Truck/Mini Van) based on distance
-- **Caching** - Caffeine-based caching for improved performance
-- **OpenAPI Documentation** - Swagger UI for API exploration
-- **Comprehensive Testing** - Unit and integration tests with >80% coverage
-- **Production Ready** - Health checks, metrics, and proper exception handling
+## 🌐 Live Demo
 
-## 📋 Prerequisites
+| Environment | URL |
+|------------|-----|
+| **Production** | [https://jumbotail.harshitpundir.tech](https://jumbotail.harshitpundir.tech) |
+| **Swagger UI** | [/swagger-ui.html](https://jumbotail.harshitpundir.tech/swagger-ui.html) |
+| **Health Check** | [/actuator/health](https://jumbotail.harshitpundir.tech/actuator/health) |
 
-- Docker & Docker Compose (recommended)
-- OR Java 17+ and Maven 3.8+
+---
 
-## � Quick Start with Docker (Recommended)
-
-Just clone and run:
+## 🐳 Quick Start (Docker)
 
 ```bash
-git clone https://github.com/your-repo/jumbotail.git
+git clone https://github.com/your-username/jumbotail.git
 cd jumbotail
 docker compose up
 ```
 
-That's it! The app will be available at `http://localhost:8080`
+App runs at **http://localhost:8080** — that's it!
 
-### Access Points
-- **Landing Page**: http://localhost:8080
-- **Swagger UI**: http://localhost:8080/swagger-ui.html
-- **Health Check**: http://localhost:8080/actuator/health
-
-### Stop the Application
+### Docker Commands
 ```bash
-docker compose down
+docker compose up           # Start
+docker compose down         # Stop
+docker compose up --build   # Rebuild after changes
+docker compose up -d        # Run in background
 ```
 
-## 🛠️ Local Development (Without Docker)
+---
 
-### 1. Clone and Build
-
-```bash
-./mvnw clean install
-```
-
-### 2. Run the Application
+## 🛠️ Local Development
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-The application starts at `http://localhost:8080`
+Requires: Java 17+
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│   Seller    │────▶│  Warehouse   │────▶│  Customer   │
+│  (Pickup)   │     │   (Hub)      │     │  (Delivery) │
+└─────────────┘     └──────────────┘     └─────────────┘
+       │                   │                    │
+       └───────── Distance-based pricing ──────┘
+```
+
+**Flow:**
+1. Seller drops product at nearest warehouse (Haversine distance)
+2. Warehouse ships to customer
+3. Transport mode auto-selected based on distance
+4. Price = Base + (Distance × Weight × Rate) + Delivery charges
+
+---
+
+## 📁 Project Structure
+
+```
+src/main/java/com/jumbotail/shipping/
+├── config/          # Cache, OpenAPI configuration
+├── controller/      # REST endpoints
+├── dto/             # Request/Response objects
+├── entity/          # JPA entities (Seller, Customer, Product, Warehouse)
+├── enums/           # TransportMode, DeliverySpeed
+├── exception/       # Global error handling
+├── repository/      # Spring Data JPA
+└── service/         # Business logic
+```
+
+---
+
+## 🎯 Features
+
+| Feature | Description |
+|---------|-------------|
+| **Interactive UI** | Landing page with live API testing |
+| **3 API Tabs** | Complete Flow, Direct Shipping, Find Warehouse |
+| **Data Tables** | Real-time view of Warehouses, Sellers, Customers |
+| **Swagger Docs** | Full OpenAPI 3.0 documentation |
+| **Caffeine Cache** | Sub-millisecond response times |
+| **Health Checks** | Actuator endpoints for monitoring |
+
+---
 
 ## 📡 API Endpoints
 
-### 1. Get Nearest Warehouse
+### Core APIs
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/v1/shipping-charge/calculate` | Full shipping calculation |
+| `GET` | `/api/v1/shipping-charge` | Direct warehouse→customer quote |
+| `GET` | `/api/v1/warehouse/nearest` | Find nearest warehouse |
+
+### Example: Calculate Shipping
 
 ```bash
-GET /api/v1/warehouse/nearest?sellerId=1&productId=1
+curl -X POST http://localhost:8080/api/v1/shipping-charge/calculate \
+  -H "Content-Type: application/json" \
+  -d '{"sellerId": 1, "customerId": 1, "productId": 1, "deliverySpeed": "EXPRESS"}'
 ```
 
-**Response:**
-```json
-{
-  "warehouseId": 1,
-  "warehouseCode": "BLR_WH_01",
-  "warehouseName": "Bangalore Central Warehouse",
-  "warehouseLocation": { "lat": 12.9716, "lng": 77.5946 },
-  "distanceKm": 45.5
-}
-```
-
-### 2. Get Shipping Charge
-
-```bash
-GET /api/v1/shipping-charge?warehouseId=1&customerId=1&deliverySpeed=STANDARD
-```
-
-**Response:**
-```json
-{
-  "shippingCharge": 150.00,
-  "transportMode": "TRUCK",
-  "deliverySpeed": "STANDARD",
-  "distanceKm": 245.5,
-  "weightKg": 1.0,
-  "currency": "INR"
-}
-```
-
-### 3. Calculate Complete Shipping
-
-```bash
-POST /api/v1/shipping-charge/calculate
-Content-Type: application/json
-
-{
-  "sellerId": 1,
-  "customerId": 1,
-  "productId": 1,
-  "deliverySpeed": "EXPRESS"
-}
-```
-
-**Response:**
 ```json
 {
   "shippingCharge": 180.00,
-  "nearestWarehouse": {
-    "warehouseId": 1,
-    "warehouseCode": "BLR_WH_01",
-    "warehouseLocation": { "lat": 12.9716, "lng": 77.5946 }
-  },
   "transportMode": "AEROPLANE",
   "deliverySpeed": "EXPRESS",
   "distanceKm": 520.5,
@@ -123,66 +123,47 @@ Content-Type: application/json
 }
 ```
 
+---
+
 ## 💰 Pricing Logic
 
-### Transport Modes (based on distance)
-
-| Mode      | Distance    | Rate         |
-|-----------|-------------|--------------|
-| Aeroplane | 500+ km     | ₹1/km/kg     |
-| Truck     | 100-500 km  | ₹2/km/kg     |
-| Mini Van  | 0-100 km    | ₹3/km/kg     |
+### Transport Modes
+| Mode | Distance | Rate |
+|------|----------|------|
+| ✈️ Aeroplane | 500+ km | ₹1/km/kg |
+| 🚛 Truck | 100-500 km | ₹2/km/kg |
+| 🚐 Mini Van | 0-100 km | ₹3/km/kg |
 
 ### Delivery Speeds
+| Speed | Formula |
+|-------|---------|
+| Standard | ₹10 base + transport |
+| Express | ₹10 base + ₹1.2/kg + transport |
 
-| Speed    | Charges                              |
-|----------|--------------------------------------|
-| Standard | ₹10 base + transport charge          |
-| Express  | ₹10 base + ₹1.2/kg + transport charge |
+---
 
-## 🧪 Running Tests
-
-```bash
-# Run all tests
-./mvnw test
-
-# Run with coverage report
-./mvnw test jacoco:report
-
-# View coverage report
-open target/site/jacoco/index.html
-```
-
-## 📊 Health Check & Metrics
+## 🧪 Testing
 
 ```bash
-# Health check
-curl http://localhost:8080/actuator/health
-
-# Application info
-curl http://localhost:8080/actuator/info
-
-# Cache statistics
-curl http://localhost:8080/actuator/caches
+./mvnw test                    # Run tests
+./mvnw test jacoco:report      # Generate coverage
 ```
 
-## 🏗️ Project Structure
+---
 
-```
-src/main/java/com/jumbotail/shipping/
-├── config/          # Configuration classes
-├── controller/      # REST controllers
-├── dto/             # Request/Response DTOs
-├── entity/          # JPA entities
-├── enums/           # TransportMode, DeliverySpeed
-├── exception/       # Exception handling
-├── repository/      # Spring Data repositories
-└── service/         # Business logic
-```
+## � Sample Data
+
+Pre-loaded with:
+- 5 Warehouses (Bangalore, Mumbai, Delhi, Chennai, Kolkata)
+- 5 Sellers across India
+- 5 Kirana store customers
+- 10 Products with varying weights
+
+---
 
 ## 🔧 Configuration
 
-Key configuration in `application.yml`:
+Key settings in `application.yml`:
 
 ```yaml
 shipping:
@@ -197,28 +178,16 @@ shipping:
       rate-per-km-per-kg: 3.0
 ```
 
-## 📝 Sample Data
+---
 
-The application initializes with sample data:
-- 5 Warehouses (Bangalore, Mumbai, Delhi, Chennai, Kolkata)
-- 5 Sellers across India
-- 5 Customers (Kirana stores)
-- 10 Products with varying weights
+## � Useful Links
 
-## 🔒 Error Handling
+- **Swagger UI**: `/swagger-ui.html` - Interactive API docs
+- **H2 Console**: `/h2-console` - Database explorer (dev)
+- **Health**: `/actuator/health` - App health status
+- **Metrics**: `/actuator/metrics` - Performance metrics
 
-All errors return a consistent structure:
-
-```json
-{
-  "timestamp": "2024-01-29T18:05:00",
-  "status": 404,
-  "error": "Not Found",
-  "message": "Customer not found with id: 999",
-  "path": "/api/v1/shipping-charge",
-  "traceId": "a1b2c3d4"
-}
-```
+---
 
 ## 📄 License
 
@@ -226,4 +195,4 @@ Proprietary - Jumbotail
 
 ---
 
-Built with ❤️ for Jumbotail Engineering Interview
+Built with ❤️ for Jumbotail Engineering
