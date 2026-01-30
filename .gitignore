@@ -1,0 +1,32 @@
+# Build output
+target/
+
+# IDE
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+*.swp
+*.swo
+.vscode/
+
+# Maven
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test outputs
+*.exec
+
+# H2 Database files
+*.db
+*.trace.db
+*.lock.db

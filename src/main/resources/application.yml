@@ -1,0 +1,89 @@
+# Application Configuration
+spring:
+  application:
+    name: shipping-charge-estimator
+
+  # Database Configuration
+  datasource:
+    url: jdbc:h2:mem:shippingdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  # JPA Configuration
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+
+  # H2 Console (for development debugging)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # Data initialization settings
+  sql:
+    init:
+      mode: always
+
+# Server Configuration
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,caches
+  endpoint:
+    health:
+      show-details: always
+
+# OpenAPI / Swagger Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+
+# Application-specific Configuration
+shipping:
+  transport:
+    aeroplane:
+      rate-per-km-per-kg: 1.0
+      min-distance-km: 500.0
+    truck:
+      rate-per-km-per-kg: 2.0
+      min-distance-km: 100.0
+    mini-van:
+      rate-per-km-per-kg: 3.0
+      min-distance-km: 0.0
+  delivery:
+    standard:
+      base-courier-charge: 10.0
+      extra-charge-per-kg: 0.0
+    express:
+      base-courier-charge: 10.0
+      extra-charge-per-kg: 1.2
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.jumbotail.shipping: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
