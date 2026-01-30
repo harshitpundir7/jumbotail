@@ -17,33 +17,34 @@ import java.util.List;
 @Configuration
 public class OpenApiConfig {
 
-    @Bean
-    public OpenAPI shippingOpenAPI() {
-        return new OpenAPI()
-                .info(new Info()
-                        .title("Shipping Charge Estimator API")
-                        .description(
-                                "Production-grade API for calculating shipping charges in a B2B e-commerce marketplace. "
-                                        +
-                                        "Designed for Kirana stores to estimate shipping costs based on distance, " +
-                                        "transport mode, and delivery speed.")
-                        .version("v1.0.0")
-                        .contact(new Contact()
-                                .name("Jumbotail Engineering")
-                                .email("engineering@jumbotail.com")
-                                .url("https://www.jumbotail.com"))
-                        .license(new License()
-                                .name("Proprietary")
-                                .url("https://www.jumbotail.com/terms")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("API Documentation")
-                        .url("https://docs.jumbotail.com/shipping-api"))
-                .servers(List.of(
-                        new Server()
-                                .url("http://localhost:8080")
-                                .description("Local Development Server"),
-                        new Server()
-                                .url("https://api.jumbotail.com")
-                                .description("Production Server")));
-    }
+        @Bean
+        public OpenAPI shippingOpenAPI() {
+                return new OpenAPI()
+                                .info(new Info()
+                                                .title("Shipping Charge Estimator API")
+                                                .description(
+                                                                "Production-grade API for calculating shipping charges in a B2B e-commerce marketplace. "
+                                                                                +
+                                                                                "Designed for Kirana stores to estimate shipping costs based on distance, "
+                                                                                +
+                                                                                "transport mode, and delivery speed.")
+                                                .version("v1.0.0")
+                                                .contact(new Contact()
+                                                                .name("Jumbotail Engineering")
+                                                                .email("engineering@jumbotail.com")
+                                                                .url("https://www.jumbotail.com"))
+                                                .license(new License()
+                                                                .name("Proprietary")
+                                                                .url("https://www.jumbotail.com/terms")))
+                                .externalDocs(new ExternalDocumentation()
+                                                .description("API Documentation")
+                                                .url("https://docs.jumbotail.com/shipping-api"))
+                                .servers(List.of(
+                                                new Server()
+                                                                .url("https://jumbotail-production.up.railway.app")
+                                                                .description("Railway Production Server"),
+                                                new Server()
+                                                                .url("http://localhost:8080")
+                                                                .description("Local Development Server")));
+        }
 }
