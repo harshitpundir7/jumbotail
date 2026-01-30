@@ -1,0 +1,30 @@
+# Ignore build output
+target/
+
+# Ignore IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# Ignore git
+.git/
+.gitignore
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore test files
+*.test.*
+
+# Ignore local environment files
+.env.local
+.env.*.local
+
+# Ignore Maven wrapper jar (it will be downloaded)
+!.mvn/wrapper/maven-wrapper.jar

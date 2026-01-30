@@ -48,3 +48,12 @@ INSERT INTO products (id, product_id, name, description, category, selling_price
 (8, 'PROD-SPICE-MIX', 'Garam Masala Mix 500g', 'Traditional blend of 13 spices', 'Spices', 180.00, 200.00, 0.5, 12.0, 8.0, 15.0, 4, true, 800, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (9, 'PROD-ATTA-10KG', 'Whole Wheat Atta 10Kg', 'Stone ground chakki atta', 'Flour', 400.00, 450.00, 10.0, 40.0, 30.0, 12.0, 5, true, 350, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (10, 'PROD-MAIDA-25KG', 'Refined Flour Bulk 25Kg', 'All-purpose flour for bakeries', 'Flour', 800.00, 900.00, 25.0, 55.0, 40.0, 18.0, 5, true, 180, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+-- =====================================================
+-- RESET AUTO-INCREMENT SEQUENCES
+-- Required because we explicitly set IDs above
+-- =====================================================
+ALTER TABLE warehouses ALTER COLUMN id RESTART WITH 100;
+ALTER TABLE sellers ALTER COLUMN id RESTART WITH 100;
+ALTER TABLE customers ALTER COLUMN id RESTART WITH 100;
+ALTER TABLE products ALTER COLUMN id RESTART WITH 100;

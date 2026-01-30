@@ -21,4 +21,9 @@ public interface SellerRepository extends JpaRepository<Seller, Long> {
      * Check if seller exists by business identifier.
      */
     boolean existsBySellerId(String sellerId);
+
+    /**
+     * Find all active sellers.
+     */
+    java.util.List<Seller> findByIsActiveTrue();
 }

@@ -26,4 +26,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
      * Check if customer exists by business identifier.
      */
     boolean existsByCustomerId(String customerId);
+
+    /**
+     * Find all active customers.
+     */
+    java.util.List<Customer> findByIsActiveTrue();
 }

@@ -14,15 +14,36 @@ A production-grade B2B e-commerce shipping charge estimation API built with Spri
 
 ## 📋 Prerequisites
 
-- Java 17+
-- Maven 3.8+
+- Docker & Docker Compose (recommended)
+- OR Java 17+ and Maven 3.8+
 
-## 🛠️ Quick Start
+## � Quick Start with Docker (Recommended)
+
+Just clone and run:
+
+```bash
+git clone https://github.com/your-repo/jumbotail.git
+cd jumbotail
+docker compose up
+```
+
+That's it! The app will be available at `http://localhost:8080`
+
+### Access Points
+- **Landing Page**: http://localhost:8080
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **Health Check**: http://localhost:8080/actuator/health
+
+### Stop the Application
+```bash
+docker compose down
+```
+
+## 🛠️ Local Development (Without Docker)
 
 ### 1. Clone and Build
 
 ```bash
-cd jumbotail-java-backend
 ./mvnw clean install
 ```
 
@@ -33,13 +54,6 @@ cd jumbotail-java-backend
 ```
 
 The application starts at `http://localhost:8080`
-
-### 3. Access Swagger UI
-
-Open `http://localhost:8080/swagger-ui.html` for interactive API documentation.
-<!-- Swagger UI: http://localhost:8080/swagger-ui.html
-H2 Console: http://localhost:8080/h2-console
-Health Check: http://localhost:8080/actuator/health -->
 
 ## 📡 API Endpoints
 

@@ -17,6 +17,7 @@ spring:
       ddl-auto: create-drop
     show-sql: false
     defer-datasource-initialization: true
+    open-in-view: false  # Explicitly disable OSIV to prevent lazy loading during view rendering
     properties:
       hibernate:
         format_sql: true

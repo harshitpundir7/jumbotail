@@ -34,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated background */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -77,6 +76,18 @@
 
             50% {
                 transform: translate(30px, 30px) scale(1.1);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
             }
         }
 
@@ -171,6 +182,12 @@
             box-shadow: 0 6px 30px rgba(91, 224, 82, 0.4);
         }
 
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .btn-outline {
             border: 1px solid var(--border);
             color: var(--text-primary);
@@ -184,7 +201,7 @@
 
         /* Hero Section */
         .hero {
-            padding: 100px 0 80px;
+            padding: 80px 0 60px;
             text-align: center;
         }
 
@@ -206,7 +223,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 24px;
@@ -217,10 +234,10 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
             max-width: 600px;
-            margin: 0 auto 40px;
+            margin: 0 auto 32px;
             line-height: 1.6;
         }
 
@@ -231,25 +248,502 @@
             flex-wrap: wrap;
         }
 
-        /* Features */
-        .features {
-            padding: 80px 0;
-        }
-
+        /* Section Title */
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 48px;
         }
 
         .section-title h2 {
-            font-size: 2.25rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .section-title p {
             color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Live Data Section */
+        .live-data {
+            padding: 60px 0;
+        }
+
+        /* Data Tables */
+        .data-tables {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .data-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .data-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(91, 224, 82, 0.05);
+        }
+
+        .data-section-header h3 {
             font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .data-section-header .count {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .data-table-container {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 14px 16px;
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover td {
+            background: rgba(91, 224, 82, 0.05);
+        }
+
+        .data-table .code {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            color: var(--primary);
+            background: rgba(91, 224, 82, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .data-table .location {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .data-table .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .data-table .badge-active {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        .data-table .number {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .loading-placeholder {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            color: var(--text-secondary);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        /* API Playground Section */
+        .api-playground {
+            padding: 60px 0;
+        }
+
+        /* API Tabs */
+        .api-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .api-tab {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .api-tab:hover {
+            border-color: var(--primary);
+            color: var(--text-primary);
+        }
+
+        .api-tab.active {
+            background: rgba(91, 224, 82, 0.1);
+            border-color: var(--primary);
+            color: var(--text-primary);
+        }
+
+        .tab-icon {
+            font-size: 1.2rem;
+        }
+
+        .tab-method {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tab-method.post {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        .tab-method.get {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-desc {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding: 8px 12px;
+            background: rgba(91, 224, 82, 0.1);
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .info-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 14px 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .info-icon {
+            font-size: 1.2rem;
+        }
+
+        .warehouse-result {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .warehouse-icon-large {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        .warehouse-result .warehouse-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .warehouse-result .warehouse-code {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        .playground-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .playground-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+        }
+
+        .playground-form h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(91, 224, 82, 0.1);
+        }
+
+        .form-group select option {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+        }
+
+        .speed-toggle {
+            display: flex;
+            gap: 12px;
+        }
+
+        .speed-option {
+            flex: 1;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .speed-option:hover {
+            border-color: var(--primary);
+        }
+
+        .speed-option.active {
+            background: rgba(91, 224, 82, 0.15);
+            border-color: var(--primary);
+        }
+
+        .speed-option .icon {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        .speed-option .name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .speed-option .desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 16px;
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(20, 87, 15, 0.15) 100%);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            min-height: 400px;
+        }
+
+        .results-panel h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .results-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .results-empty .icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .results-content {
+            display: none;
+        }
+
+        .results-content.show {
+            display: block;
+        }
+
+        .result-main {
+            text-align: center;
+            padding: 24px;
+            background: rgba(91, 224, 82, 0.1);
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .result-main .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .result-main .amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .result-main .currency {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .result-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .result-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .result-item .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .result-item .value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .result-item .value.highlight {
+            color: var(--primary);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 0;
         }
 
         .features-grid {
@@ -262,7 +756,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 32px;
+            padding: 28px;
             transition: all 0.3s ease;
         }
 
@@ -273,155 +767,26 @@
         }
 
         .feature-icon {
-            width: 56px;
-            height: 56px;
+            width: 52px;
+            height: 52px;
             background: linear-gradient(135deg, rgba(91, 224, 82, 0.2) 0%, rgba(40, 173, 31, 0.1) 100%);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 26px;
+            margin-bottom: 16px;
         }
 
         .feature-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .feature-card p {
             color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        /* Use Cases */
-        .use-cases {
-            padding: 80px 0;
-        }
-
-        .use-cases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
-        }
-
-        .use-case-card {
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(20, 87, 15, 0.1) 100%);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .use-case-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
-        }
-
-        .use-case-number {
-            font-size: 4rem;
-            font-weight: 700;
-            color: rgba(91, 224, 82, 0.1);
-            position: absolute;
-            top: 20px;
-            right: 30px;
-        }
-
-        .use-case-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--primary);
-        }
-
-        .use-case-card p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .use-case-card ul {
-            list-style: none;
-        }
-
-        .use-case-card li {
-            color: var(--text-secondary);
-            padding: 8px 0;
-            padding-left: 24px;
-            position: relative;
-        }
-
-        .use-case-card li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
-
-        /* Endpoints */
-        .endpoints {
-            padding: 80px 0;
-        }
-
-        .endpoint-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .endpoint-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .endpoint-item:hover {
-            border-color: var(--primary);
-            background: rgba(91, 224, 82, 0.08);
-        }
-
-        .endpoint-method {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            min-width: 60px;
-            text-align: center;
-        }
-
-        .method-get {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
-        }
-
-        .method-post {
-            background: rgba(59, 130, 246, 0.2);
-            color: #3b82f6;
-        }
-
-        .endpoint-path {
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            flex: 1;
-        }
-
-        .endpoint-desc {
-            color: var(--text-secondary);
+            line-height: 1.5;
             font-size: 0.9rem;
         }
 
@@ -429,7 +794,7 @@
         footer {
             padding: 40px 0;
             border-top: 1px solid var(--border);
-            margin-top: 80px;
+            margin-top: 60px;
         }
 
         .footer-content {
@@ -473,7 +838,7 @@
             }
 
             .hero {
-                padding: 60px 0;
+                padding: 50px 0;
             }
 
             .hero-buttons {
@@ -481,14 +846,12 @@
                 align-items: center;
             }
 
-            .use-cases-grid {
+            .playground-container {
                 grid-template-columns: 1fr;
             }
 
-            .endpoint-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
+            .result-details {
+                grid-template-columns: 1fr;
             }
 
             .footer-content {
@@ -510,9 +873,9 @@
                     <div class="logo-text">Jumbo<span>tail</span></div>
                 </a>
                 <nav class="nav-links">
+                    <a href="#live-data">Live Data</a>
+                    <a href="#try-api">Try API</a>
                     <a href="#features">Features</a>
-                    <a href="#use-cases">Use Cases</a>
-                    <a href="#endpoints">Endpoints</a>
                     <a href="/swagger-ui/index.html" class="btn btn-primary">API Docs →</a>
                 </nav>
             </div>
@@ -524,146 +887,386 @@
             <div class="container">
                 <div class="hero-badge">Production-Ready B2B Solution</div>
                 <h1>Shipping Charge<br>Estimator API</h1>
-                <p>Calculate accurate shipping costs for B2B e-commerce marketplace. Designed for Kirana stores to
-                    estimate costs based on distance, transport mode, and delivery speed.</p>
+                <p>Calculate accurate shipping costs for B2B e-commerce. Test the API live with real database data
+                    below.</p>
                 <div class="hero-buttons">
-                    <a href="/swagger-ui/index.html" class="btn btn-primary">
-                        <span>Explore API</span>
+                    <a href="#try-api" class="btn btn-primary">
+                        <span>Try It Now</span>
                         <span>→</span>
                     </a>
-                    <a href="#use-cases" class="btn btn-outline">View Use Cases</a>
+                    <a href="/swagger-ui/index.html" class="btn btn-outline">Full Documentation</a>
                 </div>
             </div>
         </section>
 
-        <section class="features" id="features">
+
+        <!-- API Playground Section -->
+        <section class="api-playground" id="try-api">
             <div class="container">
                 <div class="section-title">
-                    <h2>Why Choose Jumbotail?</h2>
-                    <p>Enterprise-grade features for reliable shipping calculations</p>
+                    <h2>🚀 Try the API</h2>
+                    <p>Test different API endpoints using real data from our database</p>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3>Lightning Fast</h3>
-                        <p>Sub-millisecond response times with intelligent caching using Caffeine for frequently
-                            accessed routes.</p>
+
+                <!-- API Tabs -->
+                <div class="api-tabs">
+                    <button class="api-tab active" data-tab="complete">
+                        <span class="tab-icon">📦</span>
+                        <span class="tab-text">Complete Flow</span>
+                        <span class="tab-method post">POST</span>
+                    </button>
+                    <button class="api-tab" data-tab="direct">
+                        <span class="tab-icon">🚚</span>
+                        <span class="tab-text">Direct Shipping</span>
+                        <span class="tab-method get">GET</span>
+                    </button>
+                    <button class="api-tab" data-tab="warehouse">
+                        <span class="tab-icon">🏭</span>
+                        <span class="tab-text">Find Warehouse</span>
+                        <span class="tab-method get">GET</span>
+                    </button>
+                </div>
+
+                <!-- Tab Content: Complete Flow (POST /shipping-charge/calculate) -->
+                <div class="tab-content active" id="tab-complete">
+                    <div class="playground-container">
+                        <div class="playground-form">
+                            <h3>📝 Complete Shipping Request</h3>
+                            <p class="form-desc">POST /api/v1/shipping-charge/calculate</p>
+
+                            <div class="form-group">
+                                <label>Select Seller (Source)</label>
+                                <select id="sellerSelect">
+                                    <option value="">Loading sellers...</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Select Customer (Destination)</label>
+                                <select id="customerSelect">
+                                    <option value="">Loading customers...</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Select Product (Optional - for weight)</label>
+                                <select id="productSelect">
+                                    <option value="">No product (default 1kg)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Delivery Speed</label>
+                                <div class="speed-toggle">
+                                    <div class="speed-option active" data-speed="STANDARD" data-form="complete">
+                                        <div class="icon">🚚</div>
+                                        <div class="name">Standard</div>
+                                        <div class="desc">3-5 days</div>
+                                    </div>
+                                    <div class="speed-option" data-speed="EXPRESS" data-form="complete">
+                                        <div class="icon">⚡</div>
+                                        <div class="name">Express</div>
+                                        <div class="desc">1-2 days</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary calculate-btn" id="calculateBtn">
+                                Calculate Shipping Cost
+                            </button>
+                        </div>
+
+                        <div class="results-panel">
+                            <h3>📊 Results</h3>
+
+                            <div class="results-empty" id="resultsEmpty">
+                                <div class="icon">📦</div>
+                                <p>Select a seller and customer, then click<br><strong>Calculate Shipping Cost</strong>
+                                </p>
+                            </div>
+
+                            <div class="error-message" id="errorMessage"></div>
+
+                            <div class="results-content" id="resultsContent">
+                                <div class="result-main">
+                                    <div class="label">Total Shipping Charge</div>
+                                    <div class="amount">
+                                        <span class="currency">₹</span>
+                                        <span id="shippingAmount">0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="result-details">
+                                    <div class="result-item">
+                                        <div class="label">Transport Mode</div>
+                                        <div class="value highlight" id="transportMode">—</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="label">Distance</div>
+                                        <div class="value" id="distanceKm">—</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="label">Delivery Speed</div>
+                                        <div class="value" id="deliverySpeed">—</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="label">Weight</div>
+                                        <div class="value" id="weightKg">—</div>
+                                    </div>
+                                    <div class="result-item" style="grid-column: span 2;">
+                                        <div class="label">Nearest Warehouse</div>
+                                        <div class="value highlight" id="warehouseName">—</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>Accurate Pricing</h3>
-                        <p>Dynamic pricing based on distance slabs, transport modes (Road, Rail, Air), and delivery
-                            speeds.</p>
+                </div>
+
+                <!-- Tab Content: Direct Shipping (GET /shipping-charge) -->
+                <div class="tab-content" id="tab-direct">
+                    <div class="playground-container">
+                        <div class="playground-form">
+                            <h3>🚚 Direct Shipping Quote</h3>
+                            <p class="form-desc">GET /api/v1/shipping-charge</p>
+
+                            <div class="form-group">
+                                <label>Select Warehouse (Source)</label>
+                                <select id="warehouseSelect">
+                                    <option value="">Loading warehouses...</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Select Customer (Destination)</label>
+                                <select id="customerSelectDirect">
+                                    <option value="">Loading customers...</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Select Product (Optional - for weight)</label>
+                                <select id="productSelectDirect">
+                                    <option value="">No product (default 1kg)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Delivery Speed</label>
+                                <div class="speed-toggle">
+                                    <div class="speed-option active" data-speed="STANDARD" data-form="direct">
+                                        <div class="icon">🚚</div>
+                                        <div class="name">Standard</div>
+                                        <div class="desc">3-5 days</div>
+                                    </div>
+                                    <div class="speed-option" data-speed="EXPRESS" data-form="direct">
+                                        <div class="icon">⚡</div>
+                                        <div class="name">Express</div>
+                                        <div class="desc">1-2 days</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary calculate-btn" id="calculateDirectBtn">
+                                Get Shipping Quote
+                            </button>
+                        </div>
+
+                        <div class="results-panel">
+                            <h3>📊 Results</h3>
+
+                            <div class="results-empty" id="resultsEmptyDirect">
+                                <div class="icon">🚚</div>
+                                <p>Select warehouse and customer, then click<br><strong>Get Shipping Quote</strong></p>
+                            </div>
+
+                            <div class="error-message" id="errorMessageDirect"></div>
+
+                            <div class="results-content" id="resultsContentDirect">
+                                <div class="result-main">
+                                    <div class="label">Shipping Charge</div>
+                                    <div class="amount">
+                                        <span class="currency">₹</span>
+                                        <span id="shippingAmountDirect">0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="result-details">
+                                    <div class="result-item">
+                                        <div class="label">Transport Mode</div>
+                                        <div class="value highlight" id="transportModeDirect">—</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="label">Distance</div>
+                                        <div class="value" id="distanceKmDirect">—</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="label">Delivery Speed</div>
+                                        <div class="value" id="deliverySpeedDirect">—</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="label">Weight</div>
+                                        <div class="value" id="weightKgDirect">—</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🏪</div>
-                        <h3>Warehouse Network</h3>
-                        <p>Multi-warehouse support with intelligent warehouse selection based on proximity and
-                            availability.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>Transparent Breakdown</h3>
-                        <p>Detailed cost breakdown including base charge, distance charge, speed surcharge, and mode
-                            pricing.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
-                        <h3>Enterprise Security</h3>
-                        <p>Production-ready with comprehensive input validation, error handling, and request tracing.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📖</div>
-                        <h3>OpenAPI Documented</h3>
-                        <p>Full Swagger/OpenAPI 3.0 documentation with interactive testing capabilities.</p>
+                </div>
+
+                <!-- Tab Content: Find Warehouse (GET /warehouse/nearest) -->
+                <div class="tab-content" id="tab-warehouse">
+                    <div class="playground-container">
+                        <div class="playground-form">
+                            <h3>🏭 Find Nearest Warehouse</h3>
+                            <p class="form-desc">GET /api/v1/warehouse/nearest</p>
+
+                            <div class="form-group">
+                                <label>Select Seller</label>
+                                <select id="sellerSelectWarehouse">
+                                    <option value="">Loading sellers...</option>
+                                </select>
+                            </div>
+
+                            <div class="info-box">
+                                <span class="info-icon">💡</span>
+                                <span>This API finds the closest warehouse to a seller's location for product
+                                    drop-off</span>
+                            </div>
+
+                            <button class="btn btn-primary calculate-btn" id="findWarehouseBtn">
+                                Find Nearest Warehouse
+                            </button>
+                        </div>
+
+                        <div class="results-panel">
+                            <h3>📊 Results</h3>
+
+                            <div class="results-empty" id="resultsEmptyWarehouse">
+                                <div class="icon">🏭</div>
+                                <p>Select a seller, then click<br><strong>Find Nearest Warehouse</strong></p>
+                            </div>
+
+                            <div class="error-message" id="errorMessageWarehouse"></div>
+
+                            <div class="results-content" id="resultsContentWarehouse">
+                                <div class="result-main warehouse-result">
+                                    <div class="warehouse-icon-large">🏭</div>
+                                    <div class="warehouse-name" id="nearestWarehouseName">—</div>
+                                    <div class="warehouse-code" id="nearestWarehouseCode">—</div>
+                                </div>
+
+                                <div class="result-details">
+                                    <div class="result-item">
+                                        <div class="label">Distance from Seller</div>
+                                        <div class="value highlight" id="warehouseDistanceKm">—</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="label">Warehouse ID</div>
+                                        <div class="value" id="warehouseId">—</div>
+                                    </div>
+                                    <div class="result-item" style="grid-column: span 2;">
+                                        <div class="label">Location</div>
+                                        <div class="value" id="warehouseLocation">—</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="use-cases" id="use-cases">
+        <section class="live-data" id="live-data">
             <div class="container">
                 <div class="section-title">
-                    <h2>Use Cases</h2>
-                    <p>How businesses leverage our shipping API</p>
+                    <h2>📊 Live Database</h2>
+                    <p>Real-time data from our production database</p>
                 </div>
-                <div class="use-cases-grid">
-                    <div class="use-case-card">
-                        <div class="use-case-number">01</div>
-                        <h3>Kirana Store Ordering</h3>
-                        <p>Small retailers can estimate shipping costs before placing bulk orders from wholesalers.</p>
-                        <ul>
-                            <li>Calculate costs for different delivery speeds</li>
-                            <li>Compare pricing across transport modes</li>
-                            <li>Plan inventory restocking efficiently</li>
-                        </ul>
-                    </div>
-                    <div class="use-case-card">
-                        <div class="use-case-number">02</div>
-                        <h3>E-Commerce Integration</h3>
-                        <p>Integrate shipping calculations directly into checkout flows for real-time quotes.</p>
-                        <ul>
-                            <li>REST API for easy integration</li>
-                            <li>Real-time pricing at checkout</li>
-                            <li>Support for multiple destinations</li>
-                        </ul>
-                    </div>
-                    <div class="use-case-card">
-                        <div class="use-case-number">03</div>
-                        <h3>Logistics Planning</h3>
-                        <p>Operations teams can optimize routes and warehouse selection for cost efficiency.</p>
-                        <ul>
-                            <li>Multi-warehouse comparison</li>
-                            <li>Distance-based optimization</li>
-                            <li>Bulk estimation support</li>
-                        </ul>
-                    </div>
-                    <div class="use-case-card">
-                        <div class="use-case-number">04</div>
-                        <h3>Quote Management</h3>
-                        <p>Sales teams can generate instant shipping quotes for B2B client negotiations.</p>
-                        <ul>
-                            <li>Instant cost calculations</li>
-                            <li>Detailed cost breakdowns</li>
-                            <li>Multiple transport options</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="endpoints" id="endpoints">
-            <div class="container">
-                <div class="section-title">
-                    <h2>API Endpoints</h2>
-                    <p>Quick reference for available endpoints</p>
-                </div>
-                <div class="endpoint-list">
-                    <div class="endpoint-item">
-                        <span class="endpoint-method method-post">POST</span>
-                        <span class="endpoint-path">/api/v1/shipping/estimate</span>
-                        <span class="endpoint-desc">Calculate shipping charge estimate</span>
+                <div class="data-tables">
+                    <!-- Warehouses Table -->
+                    <div class="data-section">
+                        <div class="data-section-header">
+                            <h3>🏭 Warehouses</h3>
+                            <span class="count" id="warehouseCount">Loading...</span>
+                        </div>
+                        <div class="data-table-container">
+                            <table class="data-table" id="warehouseTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Code</th>
+                                        <th>Name</th>
+                                        <th>Location</th>
+                                        <th>Capacity</th>
+                                        <th>Utilization</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="warehouseTableBody">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; padding: 40px;">Loading warehouses...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="endpoint-item">
-                        <span class="endpoint-method method-get">GET</span>
-                        <span class="endpoint-path">/api/v1/shipping/transport-modes</span>
-                        <span class="endpoint-desc">Get available transport modes</span>
+
+                    <!-- Sellers Table -->
+                    <div class="data-section">
+                        <div class="data-section-header">
+                            <h3>🏪 Sellers</h3>
+                            <span class="count" id="sellerCount">Loading...</span>
+                        </div>
+                        <div class="data-table-container">
+                            <table class="data-table" id="sellerTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Company</th>
+                                        <th>Contact</th>
+                                        <th>Location</th>
+                                        <th>Phone</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sellerTableBody">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; padding: 40px;">Loading sellers...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="endpoint-item">
-                        <span class="endpoint-method method-get">GET</span>
-                        <span class="endpoint-path">/api/v1/shipping/delivery-speeds</span>
-                        <span class="endpoint-desc">Get available delivery speeds</span>
-                    </div>
-                    <div class="endpoint-item">
-                        <span class="endpoint-method method-get">GET</span>
-                        <span class="endpoint-path">/api/v1/warehouses</span>
-                        <span class="endpoint-desc">Get all active warehouses</span>
-                    </div>
-                    <div class="endpoint-item">
-                        <span class="endpoint-method method-get">GET</span>
-                        <span class="endpoint-path">/api/v1/warehouses/{code}</span>
-                        <span class="endpoint-desc">Get warehouse by code</span>
+
+                    <!-- Customers Table -->
+                    <div class="data-section">
+                        <div class="data-section-header">
+                            <h3>🛒 Customers</h3>
+                            <span class="count" id="customerCount">Loading...</span>
+                        </div>
+                        <div class="data-table-container">
+                            <table class="data-table" id="customerTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Store Name</th>
+                                        <th>Owner</th>
+                                        <th>Location</th>
+                                        <th>Phone</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="customerTableBody">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; padding: 40px;">Loading customers...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -674,7 +1277,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    © 2026 Jumbotail Engineering. Shipping Charge Estimator v1.0.0
+                    © 2026 jumbotail
                 </div>
                 <div class="footer-links">
                     <a href="/swagger-ui/index.html">Swagger UI</a>
@@ -686,7 +1289,75 @@
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
+        // State
+        let selectedSpeedComplete = 'STANDARD';
+        let selectedSpeedDirect = 'STANDARD';
+        let sellers = [];
+        let customers = [];
+        let products = [];
+        let warehouses = [];
+
+        // DOM Elements - Data Tables
+        const warehouseTableBody = document.getElementById('warehouseTableBody');
+        const warehouseCount = document.getElementById('warehouseCount');
+        const sellerTableBody = document.getElementById('sellerTableBody');
+        const sellerCount = document.getElementById('sellerCount');
+        const customerTableBody = document.getElementById('customerTableBody');
+        const customerCount = document.getElementById('customerCount');
+
+        // DOM Elements - Complete Flow
+        const sellerSelect = document.getElementById('sellerSelect');
+        const customerSelect = document.getElementById('customerSelect');
+        const productSelect = document.getElementById('productSelect');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const resultsEmpty = document.getElementById('resultsEmpty');
+        const resultsContent = document.getElementById('resultsContent');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // DOM Elements - Direct Shipping
+        const warehouseSelect = document.getElementById('warehouseSelect');
+        const customerSelectDirect = document.getElementById('customerSelectDirect');
+        const productSelectDirect = document.getElementById('productSelectDirect');
+        const calculateDirectBtn = document.getElementById('calculateDirectBtn');
+        const resultsEmptyDirect = document.getElementById('resultsEmptyDirect');
+        const resultsContentDirect = document.getElementById('resultsContentDirect');
+        const errorMessageDirect = document.getElementById('errorMessageDirect');
+
+        // DOM Elements - Find Warehouse
+        const sellerSelectWarehouse = document.getElementById('sellerSelectWarehouse');
+        const findWarehouseBtn = document.getElementById('findWarehouseBtn');
+        const resultsEmptyWarehouse = document.getElementById('resultsEmptyWarehouse');
+        const resultsContentWarehouse = document.getElementById('resultsContentWarehouse');
+        const errorMessageWarehouse = document.getElementById('errorMessageWarehouse');
+
+        // Load all data on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadWarehouses();
+            loadSellers();
+            loadCustomers();
+            loadProducts();
+            setupTabs();
+            setupSpeedToggles();
+            setupButtons();
+        });
+
+        // Tab switching
+        function setupTabs() {
+            document.querySelectorAll('.api-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active from all tabs
+                    document.querySelectorAll('.api-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                    // Activate selected tab
+                    tab.classList.add('active');
+                    const tabId = `tab-${tab.dataset.tab}`;
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -696,6 +1367,343 @@
                 }
             });
         });
+
+        async function loadWarehouses() {
+            try {
+                const response = await fetch('/api/v1/data/warehouses');
+                warehouses = await response.json();
+                renderWarehouseTable(warehouses);
+                populateWarehouseSelect();
+            } catch (error) {
+                warehouseTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px;">Failed to load warehouses</td></tr>';
+            }
+        }
+
+        function renderWarehouseTable(warehouses) {
+            warehouseCount.textContent = `${warehouses.length} locations`;
+            warehouseTableBody.innerHTML = warehouses.map(w => `
+                <tr>
+                    <td><span class="number">${w.id}</span></td>
+                    <td><span class="code">${w.code}</span></td>
+                    <td>${w.name}</td>
+                    <td><span class="location">📍 ${w.city}, ${w.state}</span></td>
+                    <td class="number">${(w.capacity / 1000).toFixed(0)}K sqft</td>
+                    <td><span class="number">${w.utilization}%</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function populateWarehouseSelect() {
+            if (warehouseSelect) {
+                warehouseSelect.innerHTML = '<option value="">Select a warehouse...</option>' +
+                    warehouses.map(w => `<option value="${w.id}">${w.name} (${w.city})</option>`).join('');
+            }
+        }
+
+        async function loadSellers() {
+            try {
+                const response = await fetch('/api/v1/data/sellers');
+                sellers = await response.json();
+                renderSellerTable(sellers);
+                const options = '<option value="">Select a seller...</option>' +
+                    sellers.map(s => `<option value="${s.id}">${s.name} (${s.city})</option>`).join('');
+                sellerSelect.innerHTML = options;
+                if (sellerSelectWarehouse) sellerSelectWarehouse.innerHTML = options;
+            } catch (error) {
+                sellerSelect.innerHTML = '<option value="">Failed to load sellers</option>';
+                sellerTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px;">Failed to load sellers</td></tr>';
+            }
+        }
+
+        function renderSellerTable(sellers) {
+            sellerCount.textContent = `${sellers.length} active sellers`;
+            sellerTableBody.innerHTML = sellers.map(s => `
+                <tr>
+                    <td><span class="number">${s.id}</span></td>
+                    <td>${s.name}</td>
+                    <td>${s.contact || '-'}</td>
+                    <td><span class="location">📍 ${s.city}, ${s.state}</span></td>
+                    <td>${s.phone || '-'}</td>
+                    <td><span class="badge badge-active">Active</span></td>
+                </tr>
+            `).join('');
+        }
+
+        async function loadCustomers() {
+            try {
+                const response = await fetch('/api/v1/data/customers');
+                customers = await response.json();
+                renderCustomerTable(customers);
+                const options = '<option value="">Select a customer...</option>' +
+                    customers.map(c => `<option value="${c.id}">${c.name} (${c.city})</option>`).join('');
+                customerSelect.innerHTML = options;
+                if (customerSelectDirect) customerSelectDirect.innerHTML = options;
+            } catch (error) {
+                customerSelect.innerHTML = '<option value="">Failed to load customers</option>';
+                customerTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px;">Failed to load customers</td></tr>';
+            }
+        }
+
+        function renderCustomerTable(customers) {
+            customerCount.textContent = `${customers.length} active customers`;
+            customerTableBody.innerHTML = customers.map(c => `
+                <tr>
+                    <td><span class="number">${c.id}</span></td>
+                    <td>${c.name}</td>
+                    <td>${c.owner || '-'}</td>
+                    <td><span class="location">📍 ${c.city}, ${c.state}</span></td>
+                    <td>${c.phone || '-'}</td>
+                    <td><span class="badge badge-active">Active</span></td>
+                </tr>
+            `).join('');
+        }
+
+        async function loadProducts() {
+            try {
+                const response = await fetch('/api/v1/data/products');
+                products = await response.json();
+                const options = '<option value="">No product (default 1kg)</option>' +
+                    products.map(p => `<option value="${p.id}">${p.name} - ${p.weight}kg (₹${p.price})</option>`).join('');
+                productSelect.innerHTML = options;
+                if (productSelectDirect) productSelectDirect.innerHTML = options;
+            } catch (error) {
+                productSelect.innerHTML = '<option value="">Failed to load products</option>';
+            }
+        }
+
+        function setupSpeedToggles() {
+            document.querySelectorAll('.speed-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    const form = option.dataset.form;
+                    // Remove active from siblings only
+                    const siblings = option.parentElement.querySelectorAll('.speed-option');
+                    siblings.forEach(o => o.classList.remove('active'));
+                    option.classList.add('active');
+
+                    if (form === 'complete') {
+                        selectedSpeedComplete = option.dataset.speed;
+                    } else if (form === 'direct') {
+                        selectedSpeedDirect = option.dataset.speed;
+                    }
+                });
+            });
+        }
+
+        function setupButtons() {
+            calculateBtn.addEventListener('click', calculateShippingComplete);
+            if (calculateDirectBtn) calculateDirectBtn.addEventListener('click', calculateShippingDirect);
+            if (findWarehouseBtn) findWarehouseBtn.addEventListener('click', findNearestWarehouse);
+        }
+
+        // ========== Complete Flow API (POST /api/v1/shipping-charge/calculate) ==========
+        async function calculateShippingComplete() {
+            const sellerId = sellerSelect.value;
+            const customerId = customerSelect.value;
+            const productId = productSelect.value || null;
+
+            if (!sellerId || !customerId) {
+                showErrorComplete('Please select both a seller and a customer');
+                return;
+            }
+
+            calculateBtn.disabled = true;
+            calculateBtn.textContent = 'Calculating...';
+            hideErrorComplete();
+
+            try {
+                const requestBody = {
+                    sellerId: parseInt(sellerId),
+                    customerId: parseInt(customerId),
+                    deliverySpeed: selectedSpeedComplete
+                };
+
+                if (productId) {
+                    requestBody.productId = parseInt(productId);
+                }
+
+                const response = await fetch('/api/v1/shipping-charge/calculate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Calculation failed');
+                }
+
+                const result = await response.json();
+                displayResultsComplete(result);
+            } catch (error) {
+                showErrorComplete(error.message);
+            } finally {
+                calculateBtn.disabled = false;
+                calculateBtn.textContent = 'Calculate Shipping Cost';
+            }
+        }
+
+        function displayResultsComplete(result) {
+            resultsEmpty.style.display = 'none';
+            resultsContent.classList.add('show');
+
+            document.getElementById('shippingAmount').textContent =
+                parseFloat(result.shippingCharge).toFixed(2);
+            document.getElementById('transportMode').textContent =
+                formatTransportMode(result.transportMode);
+            document.getElementById('distanceKm').textContent =
+                result.distanceKm ? `${result.distanceKm.toFixed(1)} km` : '—';
+            document.getElementById('deliverySpeed').textContent =
+                result.deliverySpeed || selectedSpeedComplete;
+            document.getElementById('weightKg').textContent =
+                result.weightKg ? `${result.weightKg} kg` : '1 kg';
+            document.getElementById('warehouseName').textContent =
+                result.nearestWarehouse?.warehouseName || '—';
+        }
+
+        function showErrorComplete(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            resultsEmpty.style.display = 'none';
+            resultsContent.classList.remove('show');
+        }
+
+        function hideErrorComplete() {
+            errorMessage.classList.remove('show');
+        }
+
+        // ========== Direct Shipping API (GET /api/v1/shipping-charge) ==========
+        async function calculateShippingDirect() {
+            const warehouseId = warehouseSelect.value;
+            const customerId = customerSelectDirect.value;
+            const productId = productSelectDirect.value || null;
+
+            if (!warehouseId || !customerId) {
+                showErrorDirect('Please select both a warehouse and a customer');
+                return;
+            }
+
+            calculateDirectBtn.disabled = true;
+            calculateDirectBtn.textContent = 'Calculating...';
+            hideErrorDirect();
+
+            try {
+                let url = `/api/v1/shipping-charge?warehouseId=${warehouseId}&customerId=${customerId}&deliverySpeed=${selectedSpeedDirect}`;
+                if (productId) {
+                    url += `&productId=${productId}`;
+                }
+
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Calculation failed');
+                }
+
+                const result = await response.json();
+                displayResultsDirect(result);
+            } catch (error) {
+                showErrorDirect(error.message);
+            } finally {
+                calculateDirectBtn.disabled = false;
+                calculateDirectBtn.textContent = 'Get Shipping Quote';
+            }
+        }
+
+        function displayResultsDirect(result) {
+            resultsEmptyDirect.style.display = 'none';
+            resultsContentDirect.classList.add('show');
+
+            document.getElementById('shippingAmountDirect').textContent =
+                parseFloat(result.shippingCharge).toFixed(2);
+            document.getElementById('transportModeDirect').textContent =
+                formatTransportMode(result.transportMode);
+            document.getElementById('distanceKmDirect').textContent =
+                result.distanceKm ? `${result.distanceKm.toFixed(1)} km` : '—';
+            document.getElementById('deliverySpeedDirect').textContent =
+                result.deliverySpeed || selectedSpeedDirect;
+            document.getElementById('weightKgDirect').textContent =
+                result.weightKg ? `${result.weightKg} kg` : '1 kg';
+        }
+
+        function showErrorDirect(message) {
+            errorMessageDirect.textContent = message;
+            errorMessageDirect.classList.add('show');
+            resultsEmptyDirect.style.display = 'none';
+            resultsContentDirect.classList.remove('show');
+        }
+
+        function hideErrorDirect() {
+            errorMessageDirect.classList.remove('show');
+        }
+
+        // ========== Find Nearest Warehouse API (GET /api/v1/warehouse/nearest) ==========
+        async function findNearestWarehouse() {
+            const sellerId = sellerSelectWarehouse.value;
+
+            if (!sellerId) {
+                showErrorWarehouse('Please select a seller');
+                return;
+            }
+
+            findWarehouseBtn.disabled = true;
+            findWarehouseBtn.textContent = 'Finding...';
+            hideErrorWarehouse();
+
+            try {
+                const response = await fetch(`/api/v1/warehouse/nearest?sellerId=${sellerId}`);
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Failed to find warehouse');
+                }
+
+                const result = await response.json();
+                displayResultsWarehouse(result);
+            } catch (error) {
+                showErrorWarehouse(error.message);
+            } finally {
+                findWarehouseBtn.disabled = false;
+                findWarehouseBtn.textContent = 'Find Nearest Warehouse';
+            }
+        }
+
+        function displayResultsWarehouse(result) {
+            resultsEmptyWarehouse.style.display = 'none';
+            resultsContentWarehouse.classList.add('show');
+
+            document.getElementById('nearestWarehouseName').textContent =
+                result.warehouseName || '—';
+            document.getElementById('nearestWarehouseCode').textContent =
+                result.warehouseCode || '—';
+            document.getElementById('warehouseDistanceKm').textContent =
+                result.distanceKm ? `${result.distanceKm.toFixed(1)} km` : '—';
+            document.getElementById('warehouseId').textContent =
+                result.warehouseId || '—';
+            document.getElementById('warehouseLocation').textContent =
+                result.warehouseLocation ?
+                    `${result.warehouseLocation.lat.toFixed(4)}°N, ${result.warehouseLocation.lng.toFixed(4)}°E` : '—';
+        }
+
+        function showErrorWarehouse(message) {
+            errorMessageWarehouse.textContent = message;
+            errorMessageWarehouse.classList.add('show');
+            resultsEmptyWarehouse.style.display = 'none';
+            resultsContentWarehouse.classList.remove('show');
+        }
+
+        function hideErrorWarehouse() {
+            errorMessageWarehouse.classList.remove('show');
+        }
+
+        // ========== Shared Utilities ==========
+        function formatTransportMode(mode) {
+            const modes = {
+                'ROAD': '🚚 Road',
+                'RAILWAY': '🚂 Railway',
+                'AEROPLANE': '✈️ Aeroplane'
+            };
+            return modes[mode] || mode;
+        }
     </script>
 </body>
 
