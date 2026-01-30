@@ -41,10 +41,10 @@ public class OpenApiConfig {
                                                 .url("https://docs.jumbotail.com/shipping-api"))
                                 .servers(List.of(
                                                 new Server()
-                                                                .url("https://jumbotail-production.up.railway.app")
-                                                                .description("Railway Production Server"),
+                                                                .url("http://localhost:8080")
+                                                                .description("Local Development Server"),
                                                 new Server()
                                                                 .url("https://jumbotail-production.up.railway.app")
-                                                                .description("Local Development Server")));
+                                                                .description("Railway Production Server")));
         }
 }
